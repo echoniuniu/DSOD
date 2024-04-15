@@ -95,7 +95,7 @@ class CocoDataset(BaseDetDataset):
                 total_ann_ids
             ), f"Annotation ids in '{self.ann_file}' are not unique!"
 
-        del self.coco
+        # del self.coco
 
         return data_list
 

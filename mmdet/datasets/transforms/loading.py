@@ -152,6 +152,38 @@ class LoadMultiChannelImageFromFiles(BaseTransform):
 
 
 @TRANSFORMS.register_module()
+class LoadAlignedDualSpectrumImageFormImage(LoadMultiChannelImageFromFiles):
+    """
+    Load two images from a single image file, which is used for dual-spectrum
+
+    加载对齐的双光谱图像
+
+    默认情况下，加载的图片是灰度图(红外图像保存的灰度图)，那么将会根据第一个通道复制出另外两个通道
+    """
+    def __init__(self,
+                 to_float32: bool = False,
+                 color_type: str = 'color',
+                 imdecode_backend: str = 'cv2',
+                 file_client_args: dict = None,
+                 backend_args: dict = None
+                 ) -> None:
+        super().__init__(to_float32, color_type, imdecode_backend, file_client_args, backend_args)
+    def transform(self, results: dict) -> dict:
+        assert isinstance(results['img_path'], list)
+        imgs = []
+        for img_path in results['img_path']:
+            img_bytes = get(img_path, backend_args=self.backend_args)
+            imgs.append(mmcv.imfrombytes(img_bytes, flag=self.color_type, backend=self.imdecode_backend))
+        img = np.concatenate(imgs, axis=2)  # ( H, W, 3) * 2 => H, W, 6
+        if self.to_float32:
+            img = img.astype(np.float32)
+        results['img'] = img  # H, W, 6
+        results['img_shape'] = img.shape[:2]
+        results['ori_shape'] = img.shape[:2]
+        return results
+
+
+@TRANSFORMS.register_module()
 class LoadAnnotations(MMCV_LoadAnnotations):
     """Load and process the ``instances`` and ``seg_map`` annotation provided
     by dataset.

@@ -13,8 +13,9 @@ mmengine_minimum_version = '0.7.1'
 mmengine_maximum_version = '1.0.0'
 mmengine_version = digit_version(mmengine.__version__)
 
+# I changed the mmcv_version < digit_version(mmcv_maximum_version) to <= is Work well
 assert (mmcv_version >= digit_version(mmcv_minimum_version)
-        and mmcv_version < digit_version(mmcv_maximum_version)), \
+        and mmcv_version <= digit_version(mmcv_maximum_version)), \
     f'MMCV=={mmcv.__version__} is used but incompatible. ' \
     f'Please install mmcv>={mmcv_minimum_version}, <{mmcv_maximum_version}.'
 

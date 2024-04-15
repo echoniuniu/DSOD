@@ -209,6 +209,82 @@ class DetDataPreprocessor(ImgDataPreprocessor):
 
 
 @MODELS.register_module()
+class AlignedDualSpectrumDataPreprocessor(BaseDataPreprocessor):
+    """
+    加载 对齐的双光谱数据，即 RGB 和 IR 数据
+    两个 通道的数据都应该是 3 通道的数据，所以共有 6 通道的数据
+    除去 mean 和 std 之外，其他参数和 DetDataPreprocessor 一致，并且两通道使用相同的参数
+    """
+
+    def __init__(self,
+                 mean: Sequence[Number] = None,
+                 std: Sequence[Number] = None,
+                 pad_size_divisor: int = 1,
+                 pad_value: Union[float, int] = 0,
+                 pad_mask: bool = False,
+                 mask_pad_value: int = 0,
+                 pad_seg: bool = False,
+                 seg_pad_value: int = 255,
+                 bgr_to_rgb: bool = False,
+                 rgb_to_bgr: bool = False,
+                 boxtype2tensor: bool = True,
+                 non_blocking: Optional[bool] = False,
+                 batch_augments: Optional[List[dict]] = None
+                 ):
+        super().__init__()
+        self.p1 = DetDataPreprocessor(
+            mean=mean[:3],
+            std=std[:3],
+            pad_size_divisor=pad_size_divisor,
+            pad_value=pad_value,
+            pad_mask=pad_mask,
+            mask_pad_value=mask_pad_value,
+            pad_seg=pad_seg,
+            seg_pad_value=seg_pad_value,
+            bgr_to_rgb=bgr_to_rgb,
+            rgb_to_bgr=rgb_to_bgr,
+            boxtype2tensor=boxtype2tensor,
+            non_blocking=non_blocking,
+            batch_augments=batch_augments
+        )
+        self.p2 = DetDataPreprocessor(
+            mean=mean[:3],
+            std=std[:3],
+            pad_size_divisor=pad_size_divisor,
+            pad_value=pad_value,
+            pad_mask=pad_mask,
+            mask_pad_value=mask_pad_value,
+            pad_seg=pad_seg,
+            seg_pad_value=seg_pad_value,
+            bgr_to_rgb=bgr_to_rgb,
+            rgb_to_bgr=rgb_to_bgr,
+            boxtype2tensor=boxtype2tensor,
+            non_blocking=non_blocking,
+            batch_augments=batch_augments
+        )
+
+    def forward(self, data: dict, training: bool = False) -> dict:
+        assert data['inputs'][0].shape[0] == 6, '输入数据的通道数必须为 6'
+
+        rgb_parts = dict(
+            inputs=[x[:3, :, :] for x in data['inputs']],
+            data_samples=data['data_samples']
+        )
+        ir_parts = dict(
+            inputs=[x[3:6, :, :] for x in data['inputs']],
+            data_samples=data['data_samples']
+        )
+        # 使用两个 DetDataPreprocessor 分别处理两个通道的数据
+        p1_data = self.p1.forward(rgb_parts, training)
+        p2_data = self.p2.forward(ir_parts, training)
+        # 将两个通道的数据合并
+        inputs = torch.cat([p1_data['inputs'], p2_data['inputs']], dim=1)
+
+        # 对于两组数据的 data_samples，部分， 仅保留一个，使用 p1 的
+        return {'inputs': inputs, 'data_samples': p1_data['data_samples']}
+
+
+@MODELS.register_module()
 class BatchSyncRandomResize(nn.Module):
     """Batch random resize which synchronizes the random size across ranks.
 
