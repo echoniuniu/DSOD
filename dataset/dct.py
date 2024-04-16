@@ -10,6 +10,101 @@ from typing_extensions import Annotated
 
 app = typer.Typer()
 
+import json
+
+
+def remove_classes(all_datas, rcs):
+    """
+    all_datas: list of dict, 每个元素是一个coco数据集标注的字典
+    rcs: list of str, 要移除的类别的名称
+    """
+
+    def generate_new_categories(old_categories, rc_ids, id_maps):
+        """
+        old_categories: 原始的类别列表
+        rc_ids: 要移除的类别的id
+        id_maps: 旧id -> 新id 的映射
+        """
+        new_categories = []
+        for category in old_categories:
+            oid = category['id']
+            if oid in rc_ids:
+                continue
+            new_category = category.copy()
+            new_category['id'] = id_maps[category['id']]
+            new_categories.append(new_category)
+        return new_categories
+
+    def generate_new_annotations(old_annotations: list, rc_ids, id_maps):
+        """
+        old_annotations: 原始的注释列表
+        rc_ids: 要移除的类别的id
+        id_maps: 旧id -> 新id 的映射
+        """
+
+        idx = 1  # 用于记录新的id
+        new_annotations = []
+        for annotation in old_annotations:
+            if annotation['category_id'] in rc_ids:
+                continue
+            new_annotation = annotation.copy()
+            new_annotation['category_id'] = id_maps[annotation['category_id']]
+            new_annotation['id'] = idx
+            idx += 1  # 更新id
+            new_annotations.append(new_annotation)
+
+        return new_annotations
+
+    def generate_id_map_and_rc_id(coco_data):
+        # 然后对所有的类别做一个排序， 如果有 标识 is_rc=True 则排在后面
+        categorys = coco_data['categories']
+
+        # 对要移除的类别做一个标记，然后根据标价对所有的类别做一个排序，如果有标记的类别排在后面
+        ddc = [dict(name=category['name'], id=category['id'], is_rc=int(category['name'] in rcs)) for category in
+               categorys]
+        ddc = sorted(ddc, key=lambda x: x['is_rc'])
+
+        # 根据 ddc 排序做出 old_id -> new_id 的映射
+        id_map = {category['id']: i for i, category in enumerate(ddc) if category['is_rc'] == 0}
+        rc_id = [category['id'] for category in ddc if category['is_rc'] == 1]  # 要移除的类别的 id\
+        return id_map, rc_id
+
+    assert len(all_datas) > 0, '没有加载到数据'
+
+    id_map, rc_id = generate_id_map_and_rc_id(all_datas[0])  # 所有的注释共用同一个类别
+
+    new_all_datas = []
+    for data in all_datas:
+        data['categories'] = generate_new_categories(data['categories'], rc_id, id_map)
+        data['annotations'] = generate_new_annotations(data['annotations'], rc_id, id_map)
+        new_all_datas.append(data)
+    return tuple(new_all_datas)
+
+
+@app.command()
+def coco_rc(
+        aps: Annotated[
+            str, typer.Option(help="list of str, coco标注文件的路径,支持匹配的多个，如 'a.json', 'b.json' ")],
+        rcs: Annotated[str, typer.Option(help="list of str, 要移除的类别的名称，如 'dog', 'cat'")],
+        sps: Annotated[str, typer.Option(help="list of str, 保存的路径，于传入路径对应，如 'a_new.json','b_new.json',默认保存在aps 输入路径下，并以_new.json 命名]")]=None
+):
+    aps = aps.replace(" ", '').split(',')
+    rcs = rcs.replace(" ", '').split(',')
+    if sps is None:
+        sps = [ap.replace('.json', '_new.json') for ap in aps]
+    else:
+        sps = sps.replace(" ", '').split(',')
+    all_ap_data = []
+    for ap1 in aps:
+        with open(ap1, 'r') as f:
+            data = json.load(f)
+        all_ap_data.append(data)
+    new_all_data = remove_classes(all_ap_data, rcs)
+    for i, sp in enumerate(sps):
+        json.dump(new_all_data[i], open(sp, 'w'))
+
+    print("处理完成！")
+
 
 @app.command()
 def llvip(
@@ -143,8 +238,6 @@ def flir(
           f"可见光图片保存在: {vis_image_save_dir} 测试集: train/ 训练集: test/ \n"
           f"红外图片保存在: {ir_image_save_dir} 测试集: train/ 训练集: test/  \n"
           )
-
-    # 读取
 
 
 if __name__ == "__main__":
