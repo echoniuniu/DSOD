@@ -1,4 +1,6 @@
-# MMDetection-DS
+# DSOD
+
+>DualSpectrum Object Detection, 双光谱目标检测
 
 用于**双光谱图像**的目标检测的基础代码库，它基于[MMDetection3.1.0](README-en.md)框架代码。
 
