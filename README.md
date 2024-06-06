@@ -3,8 +3,6 @@
 
 [中文](README-zh.md) | [English](README-zh)
 
-# MMDetection-DS
-
 A foundational codebase for **dual-spectrum image** object detection, based on the [MMDetection3.1.0](README-en.md) framework code.
 
 **Related**
