@@ -2,14 +2,14 @@
   <img src="resources/mmdet-logo.png" width="600"/>
   <div>&nbsp;</div>
   <div align="center">
-    <b><font size="5">OpenMMLab 官网</font></b>
+    <b><font size="5">OpenMMLab website</font></b>
     <sup>
       <a href="https://openmmlab.com">
         <i><font size="4">HOT</font></i>
       </a>
     </sup>
     &nbsp;&nbsp;&nbsp;&nbsp;
-    <b><font size="5">OpenMMLab 开放平台</font></b>
+    <b><font size="5">OpenMMLab platform</font></b>
     <sup>
       <a href="https://platform.openmmlab.com">
         <i><font size="4">TRY IT OUT</font></i>
@@ -26,18 +26,18 @@
 [![open issues](https://isitmaintained.com/badge/open/open-mmlab/mmdetection.svg)](https://github.com/open-mmlab/mmdetection/issues)
 [![issue resolution](https://isitmaintained.com/badge/resolution/open-mmlab/mmdetection.svg)](https://github.com/open-mmlab/mmdetection/issues)
 
-[📘使用文档](https://mmdetection.readthedocs.io/zh_CN/latest/) |
-[🛠️安装教程](https://mmdetection.readthedocs.io/zh_CN/latest/get_started.html) |
-[👀模型库](https://mmdetection.readthedocs.io/zh_CN/latest/model_zoo.html) |
-[🆕更新日志](https://mmdetection.readthedocs.io/en/latest/notes/changelog.html) |
-[🚀进行中的项目](https://github.com/open-mmlab/mmdetection/projects) |
-[🤔报告问题](https://github.com/open-mmlab/mmdetection/issues/new/choose)
+[📘Documentation](https://mmdetection.readthedocs.io/en/latest/) |
+[🛠️Installation](https://mmdetection.readthedocs.io/en/latest/get_started.html) |
+[👀Model Zoo](https://mmdetection.readthedocs.io/en/latest/model_zoo.html) |
+[🆕Update News](https://mmdetection.readthedocs.io/en/latest/notes/changelog.html) |
+[🚀Ongoing Projects](https://github.com/open-mmlab/mmdetection/projects) |
+[🤔Reporting Issues](https://github.com/open-mmlab/mmdetection/issues/new/choose)
 
 </div>
 
 <div align="center">
 
-[English](README.md) | 简体中文
+English | [简体中文](MM-README_zh-CN)
 
 </div>
 
@@ -65,43 +65,44 @@
 <img src="https://github.com/open-mmlab/mmdetection/assets/17425982/6c29886f-ae7a-4a55-8be4-352ee85b7d3e"/>
 </div>
 
-## 简介
+## Introduction
 
-MMDetection 是一个基于 PyTorch 的目标检测开源工具箱。它是 [OpenMMLab](https://openmmlab.com/) 项目的一部分。
+MMDetection is an open source object detection toolbox based on PyTorch. It is
+a part of the [OpenMMLab](https://openmmlab.com/) project.
 
-主分支代码目前支持 PyTorch 1.8 及其以上的版本。
+The main branch works with **PyTorch 1.8+**.
 
 <img src="https://user-images.githubusercontent.com/12907710/187674113-2074d658-f2fb-42d1-ac15-9c4a695e64d7.png"/>
 
 <details open>
-<summary>主要特性</summary>
+<summary>Major features</summary>
 
-- **模块化设计**
+- **Modular Design**
 
-  MMDetection 将检测框架解耦成不同的模块组件，通过组合不同的模块组件，用户可以便捷地构建自定义的检测模型
+  We decompose the detection framework into different components and one can easily construct a customized object detection framework by combining different modules.
 
-- **支持多种检测任务**
+- **Support of multiple tasks out of box**
 
-  MMDetection 支持了各种不同的检测任务，包括**目标检测**，**实例分割**，**全景分割**，以及**半监督目标检测**。
+  The toolbox directly supports multiple detection tasks such as **object detection**, **instance segmentation**, **panoptic segmentation**, and **semi-supervised object detection**.
 
-- **速度快**
+- **High efficiency**
 
-  基本的框和 mask 操作都实现了 GPU 版本，训练速度比其他代码库更快或者相当，包括 [Detectron2](https://github.com/facebookresearch/detectron2), [maskrcnn-benchmark](https://github.com/facebookresearch/maskrcnn-benchmark) 和 [SimpleDet](https://github.com/TuSimple/simpledet)。
+  All basic bbox and mask operations run on GPUs. The training speed is faster than or comparable to other codebases, including [Detectron2](https://github.com/facebookresearch/detectron2), [maskrcnn-benchmark](https://github.com/facebookresearch/maskrcnn-benchmark) and [SimpleDet](https://github.com/TuSimple/simpledet).
 
-- **性能高**
+- **State of the art**
 
-  MMDetection 这个算法库源自于 COCO 2018 目标检测竞赛的冠军团队 *MMDet* 团队开发的代码，我们在之后持续进行了改进和提升。
-  新发布的 [RTMDet](configs/rtmdet) 还在实时实例分割和旋转目标检测任务中取得了最先进的成果，同时也在目标检测模型中取得了最佳的的参数量和精度平衡。
+  The toolbox stems from the codebase developed by the *MMDet* team, who won [COCO Detection Challenge](http://cocodataset.org/#detection-leaderboard) in 2018, and we keep pushing it forward.
+  The newly released [RTMDet](configs/rtmdet) also obtains new state-of-the-art results on real-time instance segmentation and rotated object detection tasks and the best parameter-accuracy trade-off on object detection.
 
 </details>
 
-除了 MMDetection 之外，我们还开源了深度学习训练库 [MMEngine](https://github.com/open-mmlab/mmengine) 和计算机视觉基础库 [MMCV](https://github.com/open-mmlab/mmcv)，它们是 MMDetection 的主要依赖。
+Apart from MMDetection, we also released [MMEngine](https://github.com/open-mmlab/mmengine) for model training and [MMCV](https://github.com/open-mmlab/mmcv) for computer vision research, which are heavily depended on by this toolbox.
 
-## 最新进展
+## What's New
 
-### 亮点
+### Highlight
 
-我们很高兴向大家介绍我们在实时目标识别任务方面的最新成果 RTMDet，包含了一系列的全卷积单阶段检测模型。 RTMDet 不仅在从 tiny 到 extra-large 尺寸的目标检测模型上实现了最佳的参数量和精度的平衡，而且在实时实例分割和旋转目标检测任务上取得了最先进的成果。 更多细节请参阅[技术报告](https://arxiv.org/abs/2212.07784)。 预训练模型可以在[这里](configs/rtmdet)找到。
+We are excited to announce our latest work on real-time object recognition tasks, **RTMDet**, a family of fully convolutional single-stage detectors. RTMDet not only achieves the best parameter-accuracy trade-off on object detection from tiny to extra-large model sizes but also obtains new state-of-the-art performance on instance segmentation and rotated object detection tasks. Details can be found in the [technical report](https://arxiv.org/abs/2212.07784). Pre-trained models are [here](configs/rtmdet).
 
 [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/rtmdet-an-empirical-study-of-designing-real/real-time-instance-segmentation-on-mscoco)](https://paperswithcode.com/sota/real-time-instance-segmentation-on-mscoco?p=rtmdet-an-empirical-study-of-designing-real)
 [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/rtmdet-an-empirical-study-of-designing-real/object-detection-in-aerial-images-on-dota-1)](https://paperswithcode.com/sota/object-detection-in-aerial-images-on-dota-1?p=rtmdet-an-empirical-study-of-designing-real)
@@ -117,66 +118,64 @@ MMDetection 是一个基于 PyTorch 的目标检测开源工具箱。它是 [Ope
 <img src="https://user-images.githubusercontent.com/12907710/208044554-1e8de6b5-48d8-44e4-a7b5-75076c7ebb71.png"/>
 </div>
 
-**v3.1.0** 版本已经在 2023.6.30 发布：
+**v3.1.0** was released in 30/6/2023:
 
-- 支持 Tracking 类算法，包括多目标跟踪 MOT 算法 SORT、DeepSORT、StrongSORT、OCSORT、ByteTrack、QDTrack 和视频实例分割 VIS 算法 MaskTrackRCNN、Mask2Former-VIS。
-- 支持 [ViTDet](projects/ViTDet)
-- 支持多模态开放检测算法 [GLIP](configs/glip) 和 [XDecoder](projects/XDecoder) 推理和评估，并同时支持了 COCO 语义分割、COCO Caption、ADE20k 通用分割、RefCOCO 等数据集。后续将支持 GLIP 微调
-- 提供了包括 MMDetection 图片任务的 [gradio demo](https://github.com/open-mmlab/mmdetection/blob/dev-3.x/projects/gradio_demo/README.md)，方便用户快速体验
+- Supports tracking algorithms including multi-object tracking (MOT) algorithms SORT, DeepSORT, StrongSORT, OCSORT, ByteTrack, QDTrack, and video instance segmentation (VIS) algorithm MaskTrackRCNN, Mask2Former-VIS.
+- Support [ViTDet](projects/ViTDet)
+- Supports inference and evaluation of multimodal algorithms [GLIP](configs/glip) and [XDecoder](projects/XDecoder), and also supports datasets such as COCO semantic segmentation, COCO Caption, ADE20k general segmentation, and RefCOCO. GLIP fine-tuning will be supported in the future.
+- Provides a [gradio demo](https://github.com/open-mmlab/mmdetection/blob/dev-3.x/projects/gradio_demo/README.md) for image type tasks of MMDetection, making it easy for users to experience.
 
-## 安装
+## Installation
 
-请参考[快速入门文档](https://mmdetection.readthedocs.io/zh_CN/latest/get_started.html)进行安装。
+Please refer to [Installation](https://mmdetection.readthedocs.io/en/latest/get_started.html) for installation instructions.
 
-## 教程
+## Getting Started
 
-请阅读[概述](https://mmdetection.readthedocs.io/zh_CN/latest/get_started.html)对 MMDetection 进行初步的了解。
+Please see [Overview](https://mmdetection.readthedocs.io/en/latest/get_started.html) for the general introduction of MMDetection.
 
-为了帮助用户更进一步了解 MMDetection，我们准备了用户指南和进阶指南，请阅读我们的[文档](https://mmdetection.readthedocs.io/zh_CN/latest/)：
+For detailed user guides and advanced guides, please refer to our [documentation](https://mmdetection.readthedocs.io/en/latest/):
 
-- 用户指南
-
-  <details>
-
-  - [训练 & 测试](https://mmdetection.readthedocs.io/zh_CN/latest/user_guides/index.html#train-test)
-    - [学习配置文件](https://mmdetection.readthedocs.io/zh_CN/latest/user_guides/config.html)
-    - [使用已有模型在标准数据集上进行推理](https://mmdetection.readthedocs.io/en/latest/user_guides/inference.html)
-    - [数据集准备](https://mmdetection.readthedocs.io/zh_CN/latest/user_guides/dataset_prepare.html)
-    - [测试现有模型](https://mmdetection.readthedocs.io/zh_CN/latest/user_guides/test.html)
-    - [在标准数据集上训练预定义的模型](https://mmdetection.readthedocs.io/zh_CN/latest/user_guides/train.html)
-    - [在自定义数据集上进行训练](https://mmdetection.readthedocs.io/zh_CN/latest/user_guides/train.html#train-with-customized-datasets)
-    - [在标准数据集上训练自定义模型](https://mmdetection.readthedocs.io/zh_CN/latest/user_guides/new_model.html)
-    - [模型微调](https://mmdetection.readthedocs.io/zh_CN/latest/user_guides/finetune.html)
-    - [提交测试结果](https://mmdetection.readthedocs.io/zh_CN/latest/user_guides/test_results_submission.html)
-    - [权重初始化](https://mmdetection.readthedocs.io/zh_CN/latest/user_guides/init_cfg.html)
-    - [将单阶段检测器作为 RPN](https://mmdetection.readthedocs.io/zh_CN/latest/user_guides/single_stage_as_rpn.html)
-    - [半监督目标检测](https://mmdetection.readthedocs.io/zh_CN/latest/user_guides/semi_det.html)
-  - [实用工具](https://mmdetection.readthedocs.io/zh_CN/latest/user_guides/index.html#useful-tools)
-
-  </details>
-
-- 进阶指南
+- User Guides
 
   <details>
 
-  - [基础概念](https://mmdetection.readthedocs.io/zh_CN/latest/advanced_guides/index.html#basic-concepts)
-  - [组件定制](https://mmdetection.readthedocs.io/zh_CN/latest/advanced_guides/index.html#component-customization)
-  - [How to](https://mmdetection.readthedocs.io/zh_CN/latest/advanced_guides/index.html#how-to)
+  - [Train & Test](https://mmdetection.readthedocs.io/en/latest/user_guides/index.html#train-test)
+    - [Learn about Configs](https://mmdetection.readthedocs.io/en/latest/user_guides/config.html)
+    - [Inference with existing models](https://mmdetection.readthedocs.io/en/latest/user_guides/inference.html)
+    - [Dataset Prepare](https://mmdetection.readthedocs.io/en/latest/user_guides/dataset_prepare.html)
+    - [Test existing models on standard datasets](https://mmdetection.readthedocs.io/en/latest/user_guides/test.html)
+    - [Train predefined models on standard datasets](https://mmdetection.readthedocs.io/en/latest/user_guides/train.html)
+    - [Train with customized datasets](https://mmdetection.readthedocs.io/en/latest/user_guides/train.html#train-with-customized-datasets)
+    - [Train with customized models and standard datasets](https://mmdetection.readthedocs.io/en/latest/user_guides/new_model.html)
+    - [Finetuning Models](https://mmdetection.readthedocs.io/en/latest/user_guides/finetune.html)
+    - [Test Results Submission](https://mmdetection.readthedocs.io/en/latest/user_guides/test_results_submission.html)
+    - [Weight initialization](https://mmdetection.readthedocs.io/en/latest/user_guides/init_cfg.html)
+    - [Use a single stage detector as RPN](https://mmdetection.readthedocs.io/en/latest/user_guides/single_stage_as_rpn.html)
+    - [Semi-supervised Object Detection](https://mmdetection.readthedocs.io/en/latest/user_guides/semi_det.html)
+  - [Useful Tools](https://mmdetection.readthedocs.io/en/latest/user_guides/index.html#useful-tools)
 
   </details>
 
-我们提供了检测的 colab 教程 [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](demo/MMDet_Tutorial.ipynb) 和 实例分割的 colab 教程 [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](demo/MMDet_Tutorial.ipynb)
+- Advanced Guides
 
-同时，我们还提供了 [MMDetection 中文解读文案汇总](docs/zh_cn/article.md)
+  <details>
 
-若需要将2.x版本的代码迁移至新版，请参考[迁移文档](https://mmdetection.readthedocs.io/en/latest/migration.html)。
+  - [Basic Concepts](https://mmdetection.readthedocs.io/en/latest/advanced_guides/index.html#basic-concepts)
+  - [Component Customization](https://mmdetection.readthedocs.io/en/latest/advanced_guides/index.html#component-customization)
+  - [How to](https://mmdetection.readthedocs.io/en/latest/advanced_guides/index.html#how-to)
 
-## 基准测试和模型库
+  </details>
 
-测试结果和模型可以在[模型库](docs/zh_cn/model_zoo.md)中找到。
+We also provide object detection colab tutorial [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](demo/MMDet_Tutorial.ipynb) and instance segmentation colab tutorial [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](demo/MMDet_InstanceSeg_Tutorial.ipynb).
+
+To migrate from MMDetection 2.x, please refer to [migration](https://mmdetection.readthedocs.io/en/latest/migration.html).
+
+## Overview of Benchmark and Model Zoo
+
+Results and models are available in the [model zoo](docs/en/model_zoo.md).
 
 <div align="center">
-  <b>算法架构</b>
+  <b>Architectures</b>
 </div>
 <table align="center">
   <tbody>
@@ -303,7 +302,7 @@ MMDetection 是一个基于 PyTorch 的目标检测开源工具箱。它是 [Ope
 </table>
 
 <div align="center">
-  <b>模块组件</b>
+  <b>Components</b>
 </div>
 <table align="center">
   <tbody>
@@ -362,7 +361,7 @@ MMDetection 是一个基于 PyTorch 的目标检测开源工具箱。它是 [Ope
       </td>
       <td>
         <ul>
-          <li><a href="configs/faster_rcnn/faster_rcnn_r50_fpn_ohem_1x_coco.py">OHEM (CVPR'2016)</a></li>
+          <li><a href="configs/faster_rcnn/faster-rcnn_r50_fpn_ohem_1x_coco.py">OHEM (CVPR'2016)</a></li>
           <li><a href="configs/gn">Group Normalization (ECCV'2018)</a></li>
           <li><a href="configs/dcn">DCN (ICCV'2017)</a></li>
           <li><a href="configs/dcnv2">DCNv2 (CVPR'2019)</a></li>
@@ -378,23 +377,24 @@ MMDetection 是一个基于 PyTorch 的目标检测开源工具箱。它是 [Ope
   </tbody>
 </table>
 
-我们在[基于 MMDetection 的项目](./docs/zh_cn/notes/projects.md)中列举了一些其他的支持的算法。
+Some other methods are also supported in [projects using MMDetection](./docs/en/notes/projects.md).
 
-## 常见问题
+## FAQ
 
-请参考 [FAQ](docs/zh_cn/notes/faq.md) 了解其他用户的常见问题。
+Please refer to [FAQ](docs/en/notes/faq.md) for frequently asked questions.
 
-## 贡献指南
+## Contributing
 
-我们感谢所有的贡献者为改进和提升 MMDetection 所作出的努力。我们将正在进行中的项目添加进了[GitHub Projects](https://github.com/open-mmlab/mmdetection/projects)页面，非常欢迎社区用户能参与进这些项目中来。请参考[贡献指南](.github/CONTRIBUTING.md)来了解参与项目贡献的相关指引。
+We appreciate all contributions to improve MMDetection. Ongoing projects can be found in out [GitHub Projects](https://github.com/open-mmlab/mmdetection/projects). Welcome community users to participate in these projects. Please refer to [CONTRIBUTING.md](.github/CONTRIBUTING.md) for the contributing guideline.
 
-## 致谢
+## Acknowledgement
 
-MMDetection 是一款由来自不同高校和企业的研发人员共同参与贡献的开源项目。我们感谢所有为项目提供算法复现和新功能支持的贡献者，以及提供宝贵反馈的用户。 我们希望这个工具箱和基准测试可以为社区提供灵活的代码工具，供用户复现已有算法并开发自己的新模型，从而不断为开源社区提供贡献。
+MMDetection is an open source project that is contributed by researchers and engineers from various colleges and companies. We appreciate all the contributors who implement their methods or add new features, as well as users who give valuable feedbacks.
+We wish that the toolbox and benchmark could serve the growing research community by providing a flexible toolkit to reimplement existing methods and develop their own new detectors.
 
-## 引用
+## Citation
 
-如果你在研究中使用了本项目的代码或者性能基准，请参考如下 bibtex 引用 MMDetection。
+If you use this toolbox or benchmark in your research, please cite this project.
 
 ```
 @article{mmdetection,
@@ -410,52 +410,33 @@ MMDetection 是一款由来自不同高校和企业的研发人员共同参与�
 }
 ```
 
-## 开源许可证
+## License
 
-该项目采用 [Apache 2.0 开源许可证](LICENSE)。
+This project is released under the [Apache 2.0 license](LICENSE).
 
-## OpenMMLab 的其他项目
+## Projects in OpenMMLab
 
-- [MMEngine](https://github.com/open-mmlab/mmengine): OpenMMLab 深度学习模型训练基础库
-- [MMCV](https://github.com/open-mmlab/mmcv): OpenMMLab 计算机视觉基础库
-- [MMPreTrain](https://github.com/open-mmlab/mmpretrain): OpenMMLab 深度学习预训练工具箱
-- [MMagic](https://github.com/open-mmlab/mmagic): OpenMMLab 新一代人工智能内容生成（AIGC）工具箱
-- [MMDetection](https://github.com/open-mmlab/mmdetection): OpenMMLab 目标检测工具箱
-- [MMDetection3D](https://github.com/open-mmlab/mmdetection3d): OpenMMLab 新一代通用 3D 目标检测平台
-- [MMRotate](https://github.com/open-mmlab/mmrotate): OpenMMLab 旋转框检测工具箱与测试基准
-- [MMYOLO](https://github.com/open-mmlab/mmyolo): OpenMMLab YOLO 系列工具箱与测试基准
-- [MMSegmentation](https://github.com/open-mmlab/mmsegmentation): OpenMMLab 语义分割工具箱
-- [MMOCR](https://github.com/open-mmlab/mmocr): OpenMMLab 全流程文字检测识别理解工具包
-- [MMPose](https://github.com/open-mmlab/mmpose): OpenMMLab 姿态估计工具箱
-- [MMHuman3D](https://github.com/open-mmlab/mmhuman3d): OpenMMLab 人体参数化模型工具箱与测试基准
-- [MMSelfSup](https://github.com/open-mmlab/mmselfsup): OpenMMLab 自监督学习工具箱与测试基准
-- [MMRazor](https://github.com/open-mmlab/mmrazor): OpenMMLab 模型压缩工具箱与测试基准
-- [MMFewShot](https://github.com/open-mmlab/mmfewshot): OpenMMLab 少样本学习工具箱与测试基准
-- [MMAction2](https://github.com/open-mmlab/mmaction2): OpenMMLab 新一代视频理解工具箱
-- [MMTracking](https://github.com/open-mmlab/mmtracking): OpenMMLab 一体化视频目标感知平台
-- [MMFlow](https://github.com/open-mmlab/mmflow): OpenMMLab 光流估计工具箱与测试基准
-- [MMEditing](https://github.com/open-mmlab/mmediting): OpenMMLab 图像视频编辑工具箱
-- [MMGeneration](https://github.com/open-mmlab/mmgeneration): OpenMMLab 图片视频生成模型工具箱
-- [MMDeploy](https://github.com/open-mmlab/mmdeploy): OpenMMLab 模型部署框架
-- [MIM](https://github.com/open-mmlab/mim): OpenMMlab 项目、算法、模型的统一入口
-- [MMEval](https://github.com/open-mmlab/mmeval): 统一开放的跨框架算法评测库
-- [Playground](https://github.com/open-mmlab/playground): 收集和展示 OpenMMLab 相关的前沿、有趣的社区项目
-
-## 欢迎加入 OpenMMLab 社区
-
-扫描下方的二维码可关注 OpenMMLab 团队的 [知乎官方账号](https://www.zhihu.com/people/openmmlab)，加入 OpenMMLab 团队的 [官方交流 QQ 群](https://jq.qq.com/?_wv=1027&k=aCvMxdr3)
-
-<div align="center">
-<img src="resources/zhihu_qrcode.jpg" height="400" />  <img src="resources/qq_group_qrcode.jpg" height="400" />
-</div>
-
-我们会在 OpenMMLab 社区为大家
-
-- 📢 分享 AI 框架的前沿核心技术
-- 💻 解读 PyTorch 常用模块源码
-- 📰 发布 OpenMMLab 的相关新闻
-- 🚀 介绍 OpenMMLab 开发的前沿算法
-- 🏃 获取更高效的问题答疑和意见反馈
-- 🔥 提供与各行各业开发者充分交流的平台
-
-干货满满 📘，等你来撩 💗，OpenMMLab 社区期待您的加入 👬
+- [MMEngine](https://github.com/open-mmlab/mmengine): OpenMMLab foundational library for training deep learning models.
+- [MMCV](https://github.com/open-mmlab/mmcv): OpenMMLab foundational library for computer vision.
+- [MMPreTrain](https://github.com/open-mmlab/mmpretrain): OpenMMLab pre-training toolbox and benchmark.
+- [MMagic](https://github.com/open-mmlab/mmagic): Open**MM**Lab **A**dvanced, **G**enerative and **I**ntelligent **C**reation toolbox.
+- [MMDetection](https://github.com/open-mmlab/mmdetection): OpenMMLab detection toolbox and benchmark.
+- [MMDetection3D](https://github.com/open-mmlab/mmdetection3d): OpenMMLab's next-generation platform for general 3D object detection.
+- [MMRotate](https://github.com/open-mmlab/mmrotate): OpenMMLab rotated object detection toolbox and benchmark.
+- [MMYOLO](https://github.com/open-mmlab/mmyolo): OpenMMLab YOLO series toolbox and benchmark.
+- [MMSegmentation](https://github.com/open-mmlab/mmsegmentation): OpenMMLab semantic segmentation toolbox and benchmark.
+- [MMOCR](https://github.com/open-mmlab/mmocr): OpenMMLab text detection, recognition, and understanding toolbox.
+- [MMPose](https://github.com/open-mmlab/mmpose): OpenMMLab pose estimation toolbox and benchmark.
+- [MMHuman3D](https://github.com/open-mmlab/mmhuman3d): OpenMMLab 3D human parametric model toolbox and benchmark.
+- [MMSelfSup](https://github.com/open-mmlab/mmselfsup): OpenMMLab self-supervised learning toolbox and benchmark.
+- [MMRazor](https://github.com/open-mmlab/mmrazor): OpenMMLab model compression toolbox and benchmark.
+- [MMFewShot](https://github.com/open-mmlab/mmfewshot): OpenMMLab fewshot learning toolbox and benchmark.
+- [MMAction2](https://github.com/open-mmlab/mmaction2): OpenMMLab's next-generation action understanding toolbox and benchmark.
+- [MMTracking](https://github.com/open-mmlab/mmtracking): OpenMMLab video perception toolbox and benchmark.
+- [MMFlow](https://github.com/open-mmlab/mmflow): OpenMMLab optical flow toolbox and benchmark.
+- [MMEditing](https://github.com/open-mmlab/mmediting): OpenMMLab image and video editing toolbox.
+- [MMGeneration](https://github.com/open-mmlab/mmgeneration): OpenMMLab image and video generative models toolbox.
+- [MMDeploy](https://github.com/open-mmlab/mmdeploy): OpenMMLab model deployment framework.
+- [MIM](https://github.com/open-mmlab/mim): MIM installs OpenMMLab packages.
+- [MMEval](https://github.com/open-mmlab/mmeval): A unified evaluation library for multiple machine learning libraries.
+- [Playground](https://github.com/open-mmlab/playground): A central hub for gathering and showcasing amazing projects built upon OpenMMLab.
