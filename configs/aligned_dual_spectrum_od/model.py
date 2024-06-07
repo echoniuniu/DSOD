@@ -52,7 +52,7 @@ model = dict(
 )
 
 # 预训练的 Deformable DETR 模型权重
-load_from = '/home/lsl/workspace/mmdetection310/pretrained_weight/deformable-detr-refine-twostage_r50_16xb2-50e_coco_20221021_184714-acc8a5ff.pth'
+load_from = '/home/ubuntu/workspace/mmdetection310/pretrained_weight/deformable-detr-refine-twostage_r50_16xb2-50e_coco_20221021_184714-acc8a5ff.pth'
 
 detect_anomalous_params=True
 find_unused_parameters=True
